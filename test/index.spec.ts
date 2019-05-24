@@ -16,4 +16,13 @@ describe('Test', () => {
         expect(result(10)).toBe(19);
     });
 
+    it('add', () => {
+        const addOne = add(1);
+
+        expect(addOne(4)).toBe(5);
+        expect(addOne(7)).toBe(8);
+        expect(add(3, 5)).toBe(8);
+        expect(add(5)(9)).toBe(14);
+    });
+
 });
