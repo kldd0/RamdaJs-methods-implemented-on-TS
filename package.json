@@ -1,0 +1,47 @@
+{
+  "name": "tasks",
+  "version": "0.0.0",
+  "description": "",
+  "main": "pipe.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stepan1243/Tasks.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Stepan1243/Tasks/issues"
+  },
+  "homepage": "https://github.com/Stepan1243/Tasks#readme",
+  "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "@waves/data-entities": "^1.10.1",
+    "jest": "^24.7.1",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.3"
+  },
+  "jest": {
+    "collectCoverage": false,
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "testMatch": [
+      "**/test/*spec.+(ts)"
+    ]
+  }
+}
