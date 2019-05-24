@@ -1,6 +1,34 @@
 const multiply = (a, b) => a * b;
 const addOne = x => x + 1;
 const square = x => x * x;
+const negate = x => x = -x;
+
+
+function pipe(...action) {
+  return (...args) => {
+    for (let i = 0; i < action.length; i++) {
+      if (action.length == 1) {
+        return action[i](...args);
+        break;
+      } else if (i != 0 && action.length > 2) {
+        return action[i + 1](action[i](action[i - 1](...args)));
+        break;
+      } else if (i != 0){
+        return action[i](action[i - 1](...args));
+      }
+    }
+  }
+}
+
+
+console.log(pipe(multiply, addOne, square)(3, 4));
+console.log(pipe(Math.pow, negate, addOne)(3, 4));
+console.log(pipe(multiply, square)(3, 4));
+console.log(pipe(multiply)(3, 4));
+console.log(pipe(multiply, negate)(3, 4));
+
+
+
 
 //
 // const f = (...args) => {
@@ -85,23 +113,3 @@ const square = x => x * x;
 // }
 // // arg(3, 4);
 // arg(multiply, addOne, square);
-
-
-
-
-function pipe(...action) {
-  return (...args) => {
-    for (let i = 0; i < action.length; i++) {
-      if (action.length == 1) {
-        return action[i](...args);
-        break;
-      } else if (i != 0){
-        return action[i + 1](action[i](action[i - 1](...args)));
-        break;
-      }
-    }
-  }
-}
-
-
-console.log(pipe(multiply, addOne, square)(3, 4));
