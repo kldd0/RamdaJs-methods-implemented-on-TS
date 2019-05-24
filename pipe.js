@@ -104,4 +104,4 @@ function pipe(...action) {
 }
 
 
-console.log(pipe(multiply, addOne, square)(5, 7));
+console.log(pipe(multiply, addOne, square)(3, 4));
