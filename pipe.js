@@ -64,26 +64,26 @@ const square = x => x * x;
 // const operate = (x, y) =>
 //multiply, square, addOne
 
-function fn(...action) {
-  return (...args) => {
-    if (action.length > 1) {
-      return action.map(item => {
-        return item(...args);
-      });
-    } else {
-      action(...args);
-    }
-  }
-}
-
-// console.log(fn(multiply, addOne, square)(3, 4));
-
-
-function arg(...args) {
-  console.log(args);
-  console.log(multiply(...args));
-}
-// arg(3, 4);
+// function fn(...action) {
+//   return (...args) => {
+//     if (action.length > 1) {
+//       return action.map(item => {
+//         return item(...args);
+//       });
+//     } else {
+//        action(...args);
+//     }
+//   }
+// }
+//
+// // console.log(fn(multiply, addOne, square)(3, 4));
+//
+//
+// function arg(...args) {
+//   console.log(args);
+//   console.log(multiply(...args));
+// }
+// // arg(3, 4);
 // arg(multiply, addOne, square);
 
 
@@ -91,15 +91,17 @@ function arg(...args) {
 
 function pipe(...action) {
   return (...args) => {
-    for (let i = 0; i < 1; i++) {
-      if (i == 0) {
-        action[i](...args);
-      } else {
-        action[i](action[i - 1]);
+    for (let i = 0; i < action.length; i++) {
+      if (action.length == 1) {
+        return action[i](...args);
+        break;
+      } else if (i != 0){
+        return action[i + 1](action[i](action[i - 1](...args)));
+        break;
       }
     }
   }
 }
 
 
-console.log(pipe(multiply, addOne, square)(3, 4));
+console.log(pipe(multiply, addOne, square)(5, 7));
