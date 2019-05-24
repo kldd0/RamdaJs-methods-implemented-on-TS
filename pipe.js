@@ -1,7 +1,7 @@
 const multiply = (a, b) => a * b;
 const addOne = x => x + 1;
 const square = x => x * x;
-
+const negate = x => x = -x;
 //
 // const f = (...args) => {
 //   for (var i = 0; i < args.length; i++) {
@@ -105,3 +105,4 @@ function pipe(...action) {
 
 
 console.log(pipe(multiply, addOne, square)(3, 4));
+console.log(pipe(Math.pow, negate, addOne)(3, 4));
