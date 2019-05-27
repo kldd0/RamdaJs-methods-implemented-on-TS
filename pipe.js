@@ -30,24 +30,24 @@ const negate = x => x = -x;
 
 
 function pipe(...fns) {
-  return (...args) => {
+  return (args) => {
     fns.reduce((acc, fn) => {
       console.log(fn);
        return fn(acc);
-    }, args);
+    }, ...args);
   }
 }
 
 
 
-console.log(pipe(multiply, addOne, square)(2, 3));
+console.log(pipe(multiply, addOne, square)([2, 3]));
 // console.log(pipe(multiply, addOne, square)(3, 4));
 //console.log(pipe(1, 2, 4, 5, 6, 7, 8, 9, 0));
 
-const test = (...arg) => {
+const test = (arg) => {
   console.log(...arg);
   console.log(arg);
   console.log(multiply(...arg));
 }
 
-test(3, 4)
+test([3, 4])
