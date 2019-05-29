@@ -25,4 +25,7 @@ describe('Test', () => {
         expect(add(5)(9)).toBe(14);
     });
 
+    // TODO add tests for method "sub"
+    // TODO add tests for method "mul"
+
 });
