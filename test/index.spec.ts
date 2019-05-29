@@ -1,8 +1,5 @@
-import { add, IPipe, mul, sub } from '../src';
+import { add, pipe, mul, sub } from '../src';
 
-// TODO    Убрать отсюда строку ниже, убрать "IPipe" из импорта
-// TODO    заменить на "pipe", добавив реализацию в файл "pipe.ts"
-declare const pipe: IPipe;
 
 describe('Test', () => {
 

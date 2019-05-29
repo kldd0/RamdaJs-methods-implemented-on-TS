@@ -1,7 +1,7 @@
 
-// TODO   Добавь реализацию pipe тут. export const pipe = ???
+export const pipe: IPipe = (...args: Array<Function>) => null as any; // TODO <-- Реализацию пиши тут
 
-export interface IPipe {
+interface IPipe {
     <A, B>(cb1: (a: A) => B): (a: A) => B;
 
     <A, B, R>(cb1: (a: A) => B, cb2: (b: B) => R): (a: A) => R;
