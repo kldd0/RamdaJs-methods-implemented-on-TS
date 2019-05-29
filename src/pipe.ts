@@ -1,5 +1,11 @@
 
-export const pipe: IPipe = (...args: Array<Function>) => null as any; // TODO <-- Реализацию пиши тут
+export const pipe: IPipe = (...fns: Array<Function>) => {
+    return (arg: number): number => {
+        return fns.reduce((acc, fn) => {
+            return fn(acc);
+        }, arg);
+    }
+}; // TODO <-- Реализацию пиши тут
 
 interface IPipe {
     <A, B>(cb1: (a: A) => B): (a: A) => B;
