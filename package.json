@@ -24,6 +24,7 @@
     "@waves/data-entities": "^1.10.1",
     "jest": "^24.7.1",
     "ts-jest": "^24.0.2",
+    "ts-node": "^8.2.0",
     "typescript": "^3.4.3"
   },
   "jest": {
