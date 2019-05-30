@@ -19,8 +19,3 @@ pred({a: 'foo', x: 11, y: 19});
 pred({a: 'fo', x: 12, y: 19});
 pred({a: 'foo', x: 9, y: 19});
 pred({a: 'xxx', x: 11, y: 29});
-
-
-//.every(elem => elem == true)
-//console.log(arg[el](obj[el]));
-  //          return arg[el](obj[el]);
