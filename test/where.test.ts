@@ -5,7 +5,7 @@ function where(arg: Object) {
         Object.keys(arg).forEach((el) => {
             ar.push(arg[el](obj[el]));
         });
-        console.log(ar.every(elem => elem == true) + '\n');
+        console.log(ar.every(elem => elem === true) + '\n');
     }
 };
 
