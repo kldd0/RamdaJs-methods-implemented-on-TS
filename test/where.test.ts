@@ -1,10 +1,9 @@
 
-function where(arg: Object = {}) {
-    //const ar: Array<boolean> = [];
-    return (obj: Object = {}) => {
-        Object.entries(arg).forEach(([key, val]) => {
-            val(obj[key])
-        });
+function where(arg: any = {}) {
+    return (obj: any = {}) => {
+        return Object.entries(arg).map(([key, value]: any) => {
+           return value(obj[key]);
+        }).every((elem: any) => elem === true);         
     }
 };
 
@@ -15,8 +14,17 @@ const pred = where({
 });
 
 console.log(pred({a: 'foo', x: 11, y: 19}));
-// console.log(pred({a: 'fo', x: 12, y: 19}));
-// console.log(pred({a: 'foo', x: 9, y: 19}));
-// console.log(pred({a: 'xxx', x: 11, y: 29}));
+console.log(pred({a: 'fo', x: 12, y: 19}));
+console.log(pred({a: 'foo', x: 9, y: 19}));
+console.log(pred({a: 'xxx', x: 11, y: 29}));
 
 
+
+
+
+
+
+//.forEach(([key, value]) => {
+  //  return key;
+//});
+//console.log(`key: (${key})  Value:${value}`);
