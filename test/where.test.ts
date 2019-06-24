@@ -18,3 +18,5 @@ console.log(pred({a: 'fo', x: 12, y: 19}));
 console.log(pred({a: 'foo', x: 9, y: 19}));
 console.log(pred({a: 'xxx', x: 11, y: 29}));
 
+
+
