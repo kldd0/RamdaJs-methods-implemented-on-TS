@@ -5,10 +5,10 @@
 function path(arr: any, obj: any) {
     let i = 0;
     function search(arg: any): any { 
-        for (let key of Object.keys(arg)) {
+        for (let key of Object.keys(arg)) { // of arr
             if (arr[i] === key) {
                 if (arg[key] !== Object) {
-                    return arg[key];
+                    return Object.values(arg[key])[i];
                 } else {
                     arr.splice(i, 1);
                     return search(arg[key]);
@@ -23,3 +23,5 @@ function path(arr: any, obj: any) {
 
 console.log(path(['a', 'b'], {a: {b: 2}}));
 console.log(path(['a', 'b'], {c: {b: 2}}));
+
+
