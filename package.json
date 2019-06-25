@@ -20,9 +20,9 @@
   },
   "homepage": "https://github.com/Stepan1243/Tasks#readme",
   "devDependencies": {
-    "@types/jest": "^24.0.11",
+    "@types/jest": "^24.0.15",
     "@waves/data-entities": "^1.10.1",
-    "jest": "^24.7.1",
+    "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
     "ts-node": "^8.2.0",
     "typescript": "^3.4.3"
