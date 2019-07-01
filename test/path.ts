@@ -3,25 +3,15 @@
     R.path(['a', 'b'], {c: {b: 2}}); //=> undefined
 */
 function path(arr: any, obj: any) {
-    let i = 0;
-    function search(arg: any): any { 
-        for (let key of Object.keys(arg)) { // of arr
-            if (arr[i] === key) {
-                if (arg[key] !== Object) {
-                    return Object.values(arg[key])[i];
-                } else {
-                    arr.splice(i, 1);
-                    return search(arg[key]);
-                }
-            } else {
-                return undefined;
-            }
-        }
+    function search(obj: any, arr: any): any {
+        let first = arr.shift();
+        if (obj.hasOwnProperty(first) && typeof(obj[first]) === 'object')
+            return search(obj[first], arr); 
+        else return obj[first];
     }
-    return search(obj);
+    return search(obj, arr)
 }
 
 console.log(path(['a', 'b'], {a: {b: 2}}));
 console.log(path(['a', 'b'], {c: {b: 2}}));
-
-
+console.log(path(['a', 'b', 'c'], {a: {b: {c: 3}}}));
