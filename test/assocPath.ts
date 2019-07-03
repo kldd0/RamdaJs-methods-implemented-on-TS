@@ -4,26 +4,30 @@
     R.assocPath(['a', 'b', 'c'], 42, {a: 5}); //=> {a: {b: {c: 42}}}
 */
 
-function assocPath(arr: any, num: any, obj: any) {
-    let ob: any = {};
+function assocPath(arr: Array<string>, el: any, obj: any) {
+    function clone(obj: any) {
+        
+    }
+    let ob: any = clone(obj);
     function pass(array: any, obj: any): any {
+        let ar = arr.slice();
         let first = array.shift();
-        if (obj.hasOwnProperty(first) && typeof(obj[first]) === 'object' && array.length !== 0) pass(array, obj[first]);
-        else if (obj.hasOwnProperty(first) && typeof(obj[first]) !== 'object' && array.length !== 0) createObj(arr, ob);
-        else obj[first] = num; return obj;
+        if (obj.hasOwnProperty(first) && typeof (obj[first]) === 'object' && array.length !== 0) pass(array, obj[first]);
+        else if (obj.hasOwnProperty(first) && typeof (obj[first]) !== 'object' && array.length !== 0) return createObj(ar, obj);
+        else obj[first] = el; return obj;
     }
     function createObj(arr: any, obj: any) {
-        let first: any = arr.shift()        
-        if (arr.indexOf(first) < arr.length - 1) { 
-            obj[`${first}`] = new Object();
+        let first: any = arr.shift()
+        if (arr.indexOf(first) < arr.length - 1) {
+            obj[`${first}`] = {};
             createObj(arr, obj[`${first}`]);
         } else {
-            obj[`${first}`] = num;
+            obj[`${first}`] = el;
         }
         return obj;
     }
-    
-    return pass(arr, obj);
+
+    return pass(arr, ob);
 }
 
 const person = {
@@ -33,54 +37,49 @@ const person = {
     }
 }
 
-// console.log(assocPath(['name', 'first'], 'new name', person)); ///  Object {name: Object {first: "new name", last: "LASTNAME"}} +
-console.log(assocPath(['name', 'initials'], 'F L', person)); ///  Object {name: Object {first: "FIRSTNAME", initials: "F L", last: "LASTNAME"}} 
+
+console.log(assocPath(['a', 'b', 'c'], 42, { a: { b: { c: 0 } } }));
+console.log(assocPath(['a', 'a', 'b', 'c'], 42, { a: { a: { b: { c: 0 } } } }));
+console.log(assocPath(['a', 'b', 'c'], 42, { a: 5 }));
+console.log(assocPath(['name', 'first'], 'new name', person)); ///  Object {name: Object {first: "new name", last: "LASTNAME"}} +
+console.log(assocPath(['name', 'initials'], 'F L', person)); ///  Object {name: Object {first: "FIRSTNAME", initials: "F L", last: "LASTNAME"}} +
+console.log(person);
+
+
+// function clone1(obj: any) {
+//     let nwOb: any = {};
+//     Object.entries(obj).map(([key, value]) => {
+//         nwOb[key] = JSON.parse(JSON.stringify(value));
+//     });
+//     return nwOb;
+// }
+
+// function clone2(obj: any) {
+//     let nwOb: any = {};
+//     Object.keys(obj).forEach(key => {
+//         nwOb[key] = JSON.parse(JSON.stringify(obj[key]));
+//     });
+//     return nwOb;
+// }
 
 
 
-console.log(assocPath(['a', 'b', 'c'], 42, {a: {b: {c: 0}}}));
-console.log(assocPath(['a', 'b', 'c'], 42, {a: 5}));
-
-
-
-// console.log(arr['c']);
-
-/** 
-function assocPath(arr: any, num: number , obj: any) {
-    let changedObj: any;
-    function finish(arr: any, obj: any) {
-        obj[arr[arr.length-1]] = num;
-        return changedObj;
-    }
-    function Do(arr: any, obj: any): any {
-        let first = arr.shift();
-        if (arr.indexOf(first) < arr.length - 1) {
-            obj = {};
-            obj.first = {};
-            return Do(arr, obj.first);
-        } else {
-            return finish(arr, obj.first)
-        } 
-    }
-    function pass(arr: any, obj: any) {
-        let first = arr.shift();
-        if (obj.hasOwnProperty(first) && typeof(obj[first]) === 'object' && arr.length !== 0) pass(arr, obj[first]);
-        else if (obj.hasOwnProperty(first) && typeof(obj[first]) !== 'object' && first !== arr[arr.length - 1]) Do(arr, obj);
-        else Do(arr, obj);
-    }
-    return pass(arr, obj)
+function clone(obj: any) {
+    return JSON.parse(JSON.stringify(obj));
 }
 
-*/
-let arr = ['a', 'b', 'c'];
-// let first = arr.shift();
-// console.log(first);
-let ar = arr;
-// console.log(ar);
 
-let obj: any = {a: 5};
-// console.log(obj['a']);
+let obj = {a: {b: {c: 4}}};
+// console.log(Object.entries(obj));
+// let newO = clone1(obj);
+let nw = clone(obj);
+console.log(nw);
+delete nw.a.b;
+console.log(nw);
+console.log(obj);
 
 
-// obj[`${first}`] = 23;
-// console.log(obj)
+
+
+
+
