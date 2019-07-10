@@ -7,7 +7,7 @@
 function assocPath(arr: Array<string>, el: any, obj: any) {
     function clone(obj: any) {
         var copy: any;
-        if (null == obj || "object" != typeof obj) return obj;
+        if (obj === null || typeof obj !== 'object') return obj;
         if (obj instanceof Object) {
             copy = {};
             for (let elem in obj) {
