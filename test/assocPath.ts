@@ -6,7 +6,22 @@
 
 function assocPath(arr: Array<string>, el: any, obj: any) {
     function clone(obj: any) {
-        
+        var copy: any;
+        if (null == obj || "object" != typeof obj) return obj;
+        if (obj instanceof Object) {
+            copy = {};
+            for (let elem in obj) {
+                copy[elem] = clone(obj[elem]);
+            }
+            return copy;
+        } 
+        if (obj instanceof Array) {
+            copy = [];
+            for (let i = 0; i < obj.length; i++) {
+                copy[i] = clone(obj[i]);
+            }
+            return copy;
+        }
     }
     let ob: any = clone(obj);
     function pass(array: any, obj: any): any {
@@ -38,45 +53,12 @@ const person = {
 }
 
 
-console.log(assocPath(['a', 'b', 'c'], 42, { a: { b: { c: 0 } } }));
-console.log(assocPath(['a', 'a', 'b', 'c'], 42, { a: { a: { b: { c: 0 } } } }));
-console.log(assocPath(['a', 'b', 'c'], 42, { a: 5 }));
+// console.log(assocPath(['a', 'b', 'c'], 42, { a: { b: { c: 0 } } }));
+// console.log(assocPath(['a', 'a', 'b', 'c'], 42, { a: { a: { b: { c: 0 } } } }));
+// console.log(assocPath(['a', 'b', 'c'], 42, { a: 5 }));
 console.log(assocPath(['name', 'first'], 'new name', person)); ///  Object {name: Object {first: "new name", last: "LASTNAME"}} +
 console.log(assocPath(['name', 'initials'], 'F L', person)); ///  Object {name: Object {first: "FIRSTNAME", initials: "F L", last: "LASTNAME"}} +
 console.log(person);
-
-
-// function clone1(obj: any) {
-//     let nwOb: any = {};
-//     Object.entries(obj).map(([key, value]) => {
-//         nwOb[key] = JSON.parse(JSON.stringify(value));
-//     });
-//     return nwOb;
-// }
-
-// function clone2(obj: any) {
-//     let nwOb: any = {};
-//     Object.keys(obj).forEach(key => {
-//         nwOb[key] = JSON.parse(JSON.stringify(obj[key]));
-//     });
-//     return nwOb;
-// }
-
-
-
-function clone(obj: any) {
-    return JSON.parse(JSON.stringify(obj));
-}
-
-
-let obj = {a: {b: {c: 4}}};
-// console.log(Object.entries(obj));
-// let newO = clone1(obj);
-let nw = clone(obj);
-console.log(nw);
-delete nw.a.b;
-console.log(nw);
-console.log(obj);
 
 
 
